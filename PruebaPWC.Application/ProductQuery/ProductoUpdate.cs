@@ -21,6 +21,7 @@ namespace PruebaPWC.Application.ProductQuery
             public string tipoProducto { get; set; }
             [Required(ErrorMessage = "Campo Nombre Obligatorio")]
             public int? cantidadProducto { get; set; }
+            public byte[] imagenProducto { get; set; }
         }
 
         public class Handler : IRequestHandler<RequestProductoUpdate, int>
@@ -42,6 +43,7 @@ namespace PruebaPWC.Application.ProductQuery
                 productoID.nombreProducto = request.nombreProducto ?? productoID.nombreProducto;
                 productoID.tipoProducto = request.tipoProducto ?? productoID.tipoProducto;
                 productoID.cantidadProducto = request.cantidadProducto ?? productoID.cantidadProducto;
+                productoID.imagenProducto = request.imagenProducto ?? productoID.imagenProducto;
                 productoID.fechaRegistro = productoID.fechaRegistro;
                 productoID.fechaModificacion = DateTime.Now;
 

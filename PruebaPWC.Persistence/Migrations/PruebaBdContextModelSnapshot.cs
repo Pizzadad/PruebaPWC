@@ -187,6 +187,9 @@ namespace PruebaPWC.Persistence.Migrations
                     b.Property<DateTime>("fechaRegistro")
                         .HasColumnType("datetime2");
 
+                    b.Property<byte[]>("imagenProducto")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("nombreProducto")
                         .HasColumnType("nvarchar(max)");
 

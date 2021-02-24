@@ -46,6 +46,10 @@ namespace PruebaPWC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(o => o.AddPolicy("corsApp", builder => {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+
             services.AddDbContext<PruebaBdContext>(opt =>
             {
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -63,6 +67,15 @@ namespace PruebaPWC
             services.TryAddSingleton<ISystemClock, SystemClock>();
             services.AddScoped<IJWT, JWTGenerador>();
             services.AddMediatR(Assembly.Load("PruebaPWC.Application"));
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            });
 
             services.AddHttpContextAccessor();
 
@@ -114,7 +127,7 @@ namespace PruebaPWC
 
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
-                #region Agrega la documentaci�n XML de todos los proyectos referenciados que lo generen
+                
                 var currentAssembly = Assembly.GetExecutingAssembly();
                 var xmlDocs = currentAssembly.GetReferencedAssemblies()
                     .Union(new AssemblyName[] { currentAssembly.GetName() })
@@ -124,7 +137,7 @@ namespace PruebaPWC
                 {
                     c.IncludeXmlComments(d);
                 });
-                #endregion
+               
 
             });
 
@@ -144,6 +157,7 @@ namespace PruebaPWC
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("corsApp");
             app.UseAuthentication();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

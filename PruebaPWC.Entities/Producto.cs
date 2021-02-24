@@ -15,6 +15,7 @@ namespace PruebaPWC.Entities
         public string nombreProducto { get; set; }
         public string tipoProducto { get; set; }
         public int cantidadProducto { get; set; }
+        public byte[] imagenProducto { get; set; }
         public DateTime fechaRegistro { get; set; }
         public DateTime fechaModificacion { get; set; }
     }

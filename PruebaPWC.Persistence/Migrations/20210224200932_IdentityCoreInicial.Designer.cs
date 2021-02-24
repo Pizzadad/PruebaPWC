@@ -10,7 +10,7 @@ using PruebaPWC.Persistence;
 namespace PruebaPWC.Persistence.Migrations
 {
     [DbContext(typeof(PruebaBdContext))]
-    [Migration("20210222143443_IdentityCoreInicial")]
+    [Migration("20210224200932_IdentityCoreInicial")]
     partial class IdentityCoreInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -188,6 +188,9 @@ namespace PruebaPWC.Persistence.Migrations
 
                     b.Property<DateTime>("fechaRegistro")
                         .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("imagenProducto")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("nombreProducto")
                         .HasColumnType("nvarchar(max)");

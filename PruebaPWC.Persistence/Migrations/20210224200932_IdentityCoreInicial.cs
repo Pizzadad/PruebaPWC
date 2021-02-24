@@ -72,6 +72,7 @@ namespace PruebaPWC.Persistence.Migrations
                     nombreProducto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     tipoProducto = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     cantidadProducto = table.Column<int>(type: "int", nullable: false),
+                    imagenProducto = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     fechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     fechaModificacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

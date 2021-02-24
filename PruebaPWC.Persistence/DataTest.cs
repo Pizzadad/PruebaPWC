@@ -22,7 +22,7 @@ namespace PruebaPWC.Persistence
                     RoleUser = "admin"
                    
                 };
-                await userManager.CreateAsync(usuario, "Password123$");
+                await userManager.CreateAsync(usuario, "christian123");
             }
         }
     }

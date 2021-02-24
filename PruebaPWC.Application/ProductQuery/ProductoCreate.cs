@@ -24,6 +24,8 @@ namespace PruebaPWC.Application.ProductQuery
             public string tipoProducto { get; set; }
             [Required(ErrorMessage = "Campo Nombre Obligatorio")]
             public int cantidadProducto { get; set; }
+            
+            public byte[] imagenProducto { get; set; }
 
         }
 
@@ -43,6 +45,7 @@ namespace PruebaPWC.Application.ProductQuery
                     nombreProducto = request.nombreProducto,
                     tipoProducto = request.tipoProducto,
                     cantidadProducto = request.cantidadProducto,
+                    imagenProducto = request.imagenProducto,
                     fechaRegistro = DateTime.Now,
                     fechaModificacion = DateTime.Now
                 };
